@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net8.0</TargetFrameworks>
+        <Nullable>enable</Nullable>
+        <Platforms>AnyCPU</Platforms>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Description>An async thread-safe singleton for the Azure OpenAI Chat (completions) client</Description>
+        <Version Condition="'$(BUILD_VERSION)' == ''">2.1.0</Version>
+        <Version Condition="'$(BUILD_VERSION)' != ''">$(BUILD_VERSION)</Version>
+        <AssemblyName>Soenneker.OpenAI.Client.Chat</AssemblyName>
+        <PackageId>Soenneker.OpenAI.Client.Chat</PackageId>
+        <PackageTags>openai client chat open-ai singleton async injection azureopenaichatclient util csharp dotnet c# .net</PackageTags>
+        <Copyright>Copyright © 2024 Jake Soenneker</Copyright>
+        <Authors>Jake Soenneker</Authors>
+        <Company>https://soenneker.com</Company>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IsPackable>true</IsPackable>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/soenneker/soenneker.openai.client.chat</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/soenneker/soenneker.openai.client.chat</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryBranch>main</RepositoryBranch>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <LangVersion>latest</LangVersion>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>icon.png</PackageIcon>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="..\CONTRIBUTING.md" Link="CONTRIBUTING.md" />
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+        <None Include="..\LICENSE" Pack="true" PackagePath="\" />
+        <None Include="..\icon.png" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+        <PackageReference Include="OpenAI" Version="2.0.0-beta.7" />
+        <PackageReference Include="Soenneker.Extensions.Configuration" Version="2.1.352" />
+        <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="2.1.317" />
+    </ItemGroup>
+</Project>
