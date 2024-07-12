@@ -42,9 +42,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Azure.AI.OpenAI" Version="2.0.0-beta.2" />
+        <PackageReference Include="Azure.Identity" Version="1.12.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
-        <PackageReference Include="OpenAI" Version="2.0.0-beta.7" />
         <PackageReference Include="Soenneker.Extensions.Configuration" Version="2.1.352" />
         <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="2.1.317" />
     </ItemGroup>

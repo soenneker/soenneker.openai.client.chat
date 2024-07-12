@@ -1,8 +1,8 @@
-using OpenAI;
 using OpenAI.Chat;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using Azure.AI.OpenAI;
 
 namespace Soenneker.OpenAI.Client.Chat.Abstract;
 
@@ -17,7 +17,7 @@ public interface IAzureOpenAIChatClient : IDisposable, IAsyncDisposable
     /// </summary>
     /// <param name="model"></param>
     /// <param name="options"></param>
-    void SetOptions(string model, OpenAIClientOptions options);
+    void SetOptions(string model, AzureOpenAIClientOptions options);
 
     ValueTask<ChatClient> Get(CancellationToken cancellationToken = default);
 }

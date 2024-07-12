@@ -7,53 +7,49 @@ using Microsoft.Extensions.Logging;
 using Soenneker.Utils.AsyncSingleton;
 using OpenAI.Chat;
 using Soenneker.Extensions.Configuration;
-using OpenAI;
 using System.ClientModel;
 using Soenneker.Extensions.String;
+using Azure.AI.OpenAI;
+
 // ReSharper disable InconsistentNaming
 
 namespace Soenneker.OpenAI.Client.Chat;
 
 /// <inheritdoc cref="IAzureOpenAIChatClient"/>
-public class AzureOpenAIChatClient: IAzureOpenAIChatClient
+public class AzureOpenAIChatClient : IAzureOpenAIChatClient
 {
     private readonly AsyncSingleton<ChatClient> _client;
 
-    private OpenAIClientOptions? _options;
-    private string _model;
+    private AzureOpenAIClientOptions? _options;
+    private string _deployment;
 
     public AzureOpenAIChatClient(ILogger<ChatClient> logger, IConfiguration configuration)
     {
         _client = new AsyncSingleton<ChatClient>(() =>
         {
+            var uri = configuration.GetValueStrict<string>("Azure:OpenAI:Uri");
             var apiKey = configuration.GetValueStrict<string>("Azure:OpenAI:ApiKey");
-            var model = configuration.GetValue<string?>("Azure:OpenAI:Model");
+            var deployment = configuration.GetValue<string?>("Azure:OpenAI:Deployment");
 
-            if (!_model.IsNullOrEmpty())
-                model = _model;
+            if (!_deployment.IsNullOrEmpty())
+                deployment = _deployment;
 
-            logger.LogDebug("Creating Azure OpenAI client with model ({model}) ...", model);
-
-            if (model.IsNullOrEmpty())
-            {
-                logger.LogWarning("GPT model has not been set, defaulting to gpt-3.5-turbo");
-                model = "gpt-3.5-turbo";
-            }
+            logger.LogDebug("Creating Azure OpenAI client with deployment ({deployment})...", deployment);
 
             var credential = new ApiKeyCredential(apiKey);
 
-            var client = new ChatClient(model, credential, _options);
+            var azureClient = new AzureOpenAIClient(new Uri(uri), credential, _options);
+
+            ChatClient? client = azureClient.GetChatClient(deployment);
 
             return client;
         });
-
     }
 
-    public void SetOptions(string model, OpenAIClientOptions options)
+    public void SetOptions(string model, AzureOpenAIClientOptions options)
     {
-        _model = model;
+        _deployment = model;
         _options = options;
-
     }
 
     public ValueTask<ChatClient> Get(CancellationToken cancellationToken = default)
