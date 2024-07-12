@@ -6,12 +6,12 @@ using Xunit.Abstractions;
 namespace Soenneker.OpenAI.Client.Chat.Tests;
 
 [Collection("Collection")]
-public class AzureOpenAIChatClientTests : FixturedUnitTest
+public class OpenAIChatClientTests : FixturedUnitTest
 {
-    private readonly IAzureOpenAIChatClient _util;
+    private readonly IOpenAIChatClient _util;
 
-    public AzureOpenAIChatClientTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public OpenAIChatClientTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
-        _util = Resolve<IAzureOpenAIChatClient>(true);
+        _util = Resolve<IOpenAIChatClient>(true);
     }
 }

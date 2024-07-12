@@ -3,9 +3,11 @@
 [![](https://img.shields.io/nuget/dt/soenneker.openai.client.chat.svg?style=for-the-badge)](https://www.nuget.org/packages/soenneker.openai.client.chat/)
 
 # ![](https://user-images.githubusercontent.com/4441470/224455560-91ed3ee7-f510-4041-a8d2-3fc093025112.png) Soenneker.OpenAI.Client.Chat
-### An async thread-safe singleton for the Azure OpenAI Chat (completions) client
+### An async thread-safe singleton for the OpenAI Chat (completions) client
 
-This library provides an implementation for interacting with Azure's OpenAI service. It allows you to configure and utilize a ChatClient to perform various tasks using OpenAI's models.
+This library provides an implementation for interacting with the OpenAI service. It allows you to configure and utilize a ChatClient to perform various tasks using OpenAI's models.
+
+For the Azure version of this: [Soenneker.Azure.OpenAI.Client.Chat](https://github.com/soenneker/soenneker.azure.openai.client.chat)
 
 ## Installation
 
@@ -16,15 +18,14 @@ dotnet add package Soenneker.OpenAI.Client.Chat
 Register:
 
 ```
-builder.services.AddAzureOpenAIChatClientAsSingleton();
+builder.services.AddOpenAIChatClientAsSingleton();
 ```
 
 `IConfiguration` values:
 
 ```
-"Azure:OpenAI:Deployment"
-"Azure:OpenAI:ApiKey"
-"Azure:OpenAI:Uri"
+"OpenAI:ApiKey"
+"OpenAI:Model"
 ```
 
 ## Usage
@@ -32,9 +33,9 @@ builder.services.AddAzureOpenAIChatClientAsSingleton();
 ```csharp
 public class OpenAIService
 {
-    private readonly IAzureOpenAIChatClient _chatClient;
+    private readonly IOpenAIChatClient _chatClient;
 
-    public OpenAIService(IAzureOpenAIChatClient chatClient)
+    public OpenAIService(IOpenAIChatClient chatClient)
     {
         _chatClient = chatClient;
     }

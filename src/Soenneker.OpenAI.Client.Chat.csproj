@@ -8,12 +8,12 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Description>An async thread-safe singleton for the Azure OpenAI Chat (completions) client</Description>
+        <Description>An async thread-safe singleton for the OpenAI Chat (completions) client</Description>
         <Version Condition="'$(BUILD_VERSION)' == ''">2.1.0</Version>
         <Version Condition="'$(BUILD_VERSION)' != ''">$(BUILD_VERSION)</Version>
         <AssemblyName>Soenneker.OpenAI.Client.Chat</AssemblyName>
         <PackageId>Soenneker.OpenAI.Client.Chat</PackageId>
-        <PackageTags>openai client chat open-ai singleton async injection azureopenaichatclient util csharp dotnet c# .net</PackageTags>
+        <PackageTags>openai client chat open-ai singleton async injection openaichatclient util csharp dotnet c# .net</PackageTags>
         <Copyright>Copyright © 2024 Jake Soenneker</Copyright>
         <Authors>Jake Soenneker</Authors>
         <Company>https://soenneker.com</Company>
@@ -42,10 +42,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Azure.AI.OpenAI" Version="2.0.0-beta.2" />
-        <PackageReference Include="Azure.Identity" Version="1.12.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+        <PackageReference Include="OpenAI" Version="2.0.0-beta.7" />
         <PackageReference Include="Soenneker.Extensions.Configuration" Version="2.1.352" />
         <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="2.1.317" />
     </ItemGroup>

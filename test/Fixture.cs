@@ -26,6 +26,6 @@ public class Fixture : UnitFixture
         IConfiguration config = TestUtil.BuildConfig();
         services.AddSingleton(config);
 
-        services.AddAzureOpenAIChatClientAsSingleton();
+        services.AddOpenAIChatClientAsSingleton();
     }
 }
