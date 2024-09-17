@@ -31,7 +31,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\src\Soenneker.OpenAI.Client.Chat.csproj" />
+        <ProjectReference Include="..\..\src\Soenneker.OpenAI.Client.Chat.csproj" />
     </ItemGroup>
 
 </Project>
