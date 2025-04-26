@@ -44,7 +44,7 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.4" />
         <PackageReference Include="OpenAI" Version="2.1.0" />
-        <PackageReference Include="Soenneker.Extensions.Configuration" Version="3.0.673" />
+        <PackageReference Include="Soenneker.Extensions.Configuration" Version="3.0.674" />
         <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="3.0.700" />
     </ItemGroup>
 </Project>
