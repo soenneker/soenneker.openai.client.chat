@@ -15,7 +15,7 @@ using Soenneker.Extensions.String;
 namespace Soenneker.OpenAI.Client.Chat;
 
 /// <inheritdoc cref="IOpenAIChatClient"/>
-public class OpenAIChatClient : IOpenAIChatClient
+public sealed class OpenAIChatClient : IOpenAIChatClient
 {
     private readonly AsyncSingleton<ChatClient> _client;
 
@@ -62,15 +62,11 @@ public class OpenAIChatClient : IOpenAIChatClient
 
     public void Dispose()
     {
-        GC.SuppressFinalize(this);
-
         _client.Dispose();
     }
 
     public ValueTask DisposeAsync()
     {
-        GC.SuppressFinalize(this);
-
         return _client.DisposeAsync();
     }
 }
