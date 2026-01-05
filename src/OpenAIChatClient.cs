@@ -18,35 +18,40 @@ namespace Soenneker.OpenAI.Client.Chat;
 public sealed class OpenAIChatClient : IOpenAIChatClient
 {
     private readonly AsyncSingleton<ChatClient> _client;
+    private readonly ILogger<ChatClient> _logger;
+    private readonly IConfiguration _configuration;
 
     private OpenAIClientOptions? _options;
     private string _model;
 
     public OpenAIChatClient(ILogger<ChatClient> logger, IConfiguration configuration)
     {
-        _client = new AsyncSingleton<ChatClient>(() =>
+        _logger = logger;
+        _configuration = configuration;
+        _client = new AsyncSingleton<ChatClient>(CreateClient);
+    }
+
+    private ChatClient CreateClient()
+    {
+        var apiKey = _configuration.GetValueStrict<string>("OpenAI:ApiKey");
+        var model = _configuration.GetValue<string?>("OpenAI:Model");
+
+        if (!_model.IsNullOrEmpty())
+            model = _model;
+
+        _logger.LogDebug("Creating OpenAI client with model ({model}) ...", model);
+
+        if (model.IsNullOrEmpty())
         {
-            var apiKey = configuration.GetValueStrict<string>("OpenAI:ApiKey");
-            var model = configuration.GetValue<string?>("OpenAI:Model");
+            _logger.LogWarning("GPT model has not been set, defaulting to gpt-3.5-turbo");
+            model = "gpt-3.5-turbo";
+        }
 
-            if (!_model.IsNullOrEmpty())
-                model = _model;
+        var credential = new ApiKeyCredential(apiKey);
 
-            logger.LogDebug("Creating OpenAI client with model ({model}) ...", model);
+        var client = new ChatClient(model, credential, _options);
 
-            if (model.IsNullOrEmpty())
-            {
-                logger.LogWarning("GPT model has not been set, defaulting to gpt-3.5-turbo");
-                model = "gpt-3.5-turbo";
-            }
-
-            var credential = new ApiKeyCredential(apiKey);
-
-            var client = new ChatClient(model, credential, _options);
-
-            return client;
-        });
-
+        return client;
     }
 
     public void SetOptions(string model, OpenAIClientOptions options)
