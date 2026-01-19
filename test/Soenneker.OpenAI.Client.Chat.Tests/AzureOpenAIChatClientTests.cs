@@ -14,4 +14,9 @@ public class OpenAIChatClientTests : FixturedUnitTest
     {
         _util = Resolve<IOpenAIChatClient>(true);
     }
+
+    [Fact]
+    public void Default()
+    { 
+    }
 }

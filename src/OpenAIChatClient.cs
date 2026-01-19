@@ -1,7 +1,6 @@
 using Soenneker.OpenAI.Client.Chat.Abstract;
 using System.Threading.Tasks;
 using System.Threading;
-using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Soenneker.Utils.AsyncSingleton;
