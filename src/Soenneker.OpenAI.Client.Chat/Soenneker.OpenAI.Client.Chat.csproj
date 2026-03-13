@@ -46,6 +46,6 @@
     <ItemGroup>
         <PackageReference Include="OpenAI" Version="2.9.1" />
         <PackageReference Include="Soenneker.Extensions.Configuration" Version="4.0.805" />
-        <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.780" />
+        <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.782" />
     </ItemGroup>
 </Project>
