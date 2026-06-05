@@ -10,6 +10,9 @@ namespace Soenneker.OpenAI.Client.Chat.Abstract;
 /// An async thread-safe singleton for the OpenAI Chat (completions) client
 /// </summary>
 // ReSharper disable once InconsistentNaming
+/// <summary>
+/// Defines the open ai chat client contract.
+/// </summary>
 public interface IOpenAIChatClient : IDisposable, IAsyncDisposable
 {
     /// <summary>
@@ -19,5 +22,10 @@ public interface IOpenAIChatClient : IDisposable, IAsyncDisposable
     /// <param name="options"></param>
     void SetOptions(string model, OpenAIClientOptions options);
 
+    /// <summary>
+    /// Gets the value.
+    /// </summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the result of the operation.</returns>
     ValueTask<ChatClient> Get(CancellationToken cancellationToken = default);
 }
