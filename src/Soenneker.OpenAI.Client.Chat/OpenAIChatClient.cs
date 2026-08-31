@@ -13,7 +13,6 @@ using Soenneker.Extensions.String;
 
 namespace Soenneker.OpenAI.Client.Chat;
 
-/// <inheritdoc cref="IOpenAIChatClient"/>
 public sealed class OpenAIChatClient : IOpenAIChatClient
 {
     private readonly AsyncSingleton<ChatClient> _client;
@@ -21,7 +20,7 @@ public sealed class OpenAIChatClient : IOpenAIChatClient
     private readonly IConfiguration _configuration;
 
     private OpenAIClientOptions? _options;
-    private string _model;
+    private string? _model;
 
     public OpenAIChatClient(ILogger<ChatClient> logger, IConfiguration configuration)
     {
@@ -64,18 +63,11 @@ public sealed class OpenAIChatClient : IOpenAIChatClient
         return _client.Get(cancellationToken);
     }
 
-    /// <summary>
-    /// Releases resources used by the current instance.
-    /// </summary>
     public void Dispose()
     {
         _client.Dispose();
     }
 
-    /// <summary>
-    /// Asynchronously releases resources used by the current instance.
-    /// </summary>
-    /// <returns>A task that represents the asynchronous operation.</returns>
     public ValueTask DisposeAsync()
     {
         return _client.DisposeAsync();

@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Description>An async thread-safe singleton for the OpenAI Chat (completions) client</Description>
+        <Description>Creates and caches an OpenAI ChatClient from application configuration.</Description>
         <Version Condition="'$(BUILD_VERSION)' == ''">4.0.0</Version>
         <Version Condition="'$(BUILD_VERSION)' != ''">$(BUILD_VERSION)</Version>
         <AssemblyName>Soenneker.OpenAI.Client.Chat</AssemblyName>
