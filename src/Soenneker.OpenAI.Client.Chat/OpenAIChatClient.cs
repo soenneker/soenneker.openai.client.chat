@@ -13,6 +13,7 @@ using Soenneker.Extensions.String;
 
 namespace Soenneker.OpenAI.Client.Chat;
 
+/// <inheritdoc cref="IOpenAIChatClient" />
 public sealed class OpenAIChatClient : IOpenAIChatClient
 {
     private readonly AsyncSingleton<ChatClient> _client;
