@@ -32,7 +32,7 @@ public sealed class OpenAIChatClient : IOpenAIChatClient
 
     private ChatClient CreateClient()
     {
-        var apiKey = _configuration.GetValueStrict<string>("OpenAI:ApiKey");
+        var apiKey = _configuration.GetStringStrict("OpenAI:ApiKey");
         var model = _configuration.GetValue<string?>("OpenAI:Model");
 
         if (!_model.IsNullOrEmpty())
