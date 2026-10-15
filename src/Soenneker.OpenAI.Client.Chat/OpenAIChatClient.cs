@@ -8,12 +8,10 @@ using OpenAI.Chat;
 using Soenneker.Extensions.Configuration;
 using OpenAI;
 using System.ClientModel;
-using Soenneker.Extensions.String;
 // ReSharper disable InconsistentNaming
 
 namespace Soenneker.OpenAI.Client.Chat;
 
-/// <inheritdoc cref="IOpenAIChatClient" />
 public sealed class OpenAIChatClient : IOpenAIChatClient
 {
     private readonly AsyncSingleton<ChatClient> _client;
@@ -35,12 +33,12 @@ public sealed class OpenAIChatClient : IOpenAIChatClient
         var apiKey = _configuration.GetStringStrict("OpenAI:ApiKey");
         var model = _configuration.GetValue<string?>("OpenAI:Model");
 
-        if (!_model.IsNullOrEmpty())
+        if (!string.IsNullOrEmpty(_model))
             model = _model;
 
         _logger.LogDebug("Creating OpenAI client with model ({model}) ...", model);
 
-        if (model.IsNullOrEmpty())
+        if (string.IsNullOrEmpty(model))
         {
             _logger.LogWarning("GPT model has not been set, defaulting to gpt-3.5-turbo");
             model = "gpt-3.5-turbo";
