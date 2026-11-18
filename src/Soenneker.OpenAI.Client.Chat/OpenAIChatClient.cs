@@ -36,7 +36,8 @@ public sealed class OpenAIChatClient : IOpenAIChatClient
         if (!string.IsNullOrEmpty(_model))
             model = _model;
 
-        _logger.LogDebug("Creating OpenAI client with model ({model}) ...", model);
+        if (_logger.IsEnabled(LogLevel.Debug))
+            _logger.LogDebug("Creating OpenAI client with model ({model}) ...", model);
 
         if (string.IsNullOrEmpty(model))
         {
